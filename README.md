@@ -6,17 +6,28 @@ Database details:
 Database name: drone_info
 
 Tables: 
-automation_features => Like auto take-off & landing, terrain following, click & fly etc
-company => Like DRDO, Intel, DJI etc
-country => Country which macufactures it
-cv_algorithm  => Segmentation, tracking, object detection etc
-domain => Agriculture, military, health etc
-drone_models => drone specs and relations to other tables
-pair_drone_automation_feature => pairwise mapping of drone with automation features that are supported in it 
-pair_drone_country => pairwise mapping of drone and country
-pair_drone_cv_algo => similar to above
-pair_drone_security_feature => similar to above
-security_features  => Like encryption, alerts, back home and other security features
+# automation_features 
+=> Like auto take-off & landing, terrain following, click & fly etc
+# company
+=> Like DRDO, Intel, DJI etc
+# country
+=> Country which macufactures it
+# cv_algorithm
+=> Segmentation, tracking, object detection etc
+# domain
+=> Agriculture, military, health etc
+# drone_models
+=> drone specs and relations to other tables
+# pair_drone_automation_feature
+=> pairwise mapping of drone with automation features that are supported in it 
+# pair_drone_country
+=> pairwise mapping of drone and country
+# pair_drone_cv_algo
+=> similar to above
+# pair_drone_security_feature
+=> similar to above
+# security_features
+=> Like encryption, alerts, back home and other security features
 
 
 Main table: drone_models
