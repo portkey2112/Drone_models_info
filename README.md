@@ -31,26 +31,20 @@ Tables:
 
 
 Main table: drone_models
-mysql> desc drone_models;
-+-------------------------+--------------+------+-----+---------+-------+
-| Field                   | Type         | Null | Key | Default | Extra |
-+-------------------------+--------------+------+-----+---------+-------+
-| ID                      | int          | NO   | PRI | NULL    |       |
-| Name                    | varchar(255) | NO   |     | NULL    |       |
-| company_id              | int          | NO   | MUL | NULL    |       |
-| height                  | int          | YES  |     | NULL    |       |
-| users                   | varchar(255) | YES  |     | NULL    |       |
-| license                 | tinyint(1)   | YES  |     | NULL    |       |
-| training                | tinyint(1)   | YES  |     | NULL    |       |
-| price                   | int          | YES  |     | NULL    |       |
-| weight_in_kg            | float        | YES  |     | NULL    |       |
-| country_of_operation_ID | int          | YES  | MUL | NULL    |       |
-| domain_ID               | int          | NO   | MUL | NULL    |       |
-| usecase                 | varchar(255) | NO   |     | NULL    |       |
-| wingspan                | float        | YES  |     | NULL    |       |
-+-------------------------+--------------+------+-----+---------+-------+
-13 rows in set (0.01 sec)
-
+Fields:
+1. ID
+2. Name
+3. company_id. (manufacturer)
+4. height
+5. users (individuals or company or govt etc)
+6. license (license required for using?)
+7. training (training required for flying?)
+8. price
+9. weight_in_kg
+10. country_of_operation_ID
+11. domain_ID (domain of use - agriculture, military etc)
+12. usecase (exact usecase within domain)
+13. wingspan
 
 
 
