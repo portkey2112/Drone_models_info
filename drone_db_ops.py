@@ -1,14 +1,12 @@
 import mysql.connector
 
 class droneDB():
-    def __init__(self, host, user, password, database):
+    def __init__(self, host='localhost', user='root', password='Unbxd@123', database='drone_info'):
         self.host = host
         self.user = user
         self.password = password
         self.database = database
-
         self.db = mysql.connector.connect(host=host, user=user, password=password, database=database)
-
         self.cursor = self.db.cursor()
 
     def get_db_details(self):
@@ -26,8 +24,6 @@ class droneDB():
             print(x)
         print('DONE')
 
-
-
     def desc_table(self, tablename):
         query = f'desc {tablename}'
         try:
@@ -40,7 +36,6 @@ class droneDB():
         for x in result:
             print(x)
         print('DONE')
-
 
     def insert_records(self, tablename, val_tuple):
         query_str = f'INSERT INTO {tablename} VALUES '
@@ -58,7 +53,6 @@ class droneDB():
             return
         print('Insertion operation complete')
 
-
     def display_entries(self, tablename):
         query_str = f'SELECT * FROM {tablename}'
         try:
@@ -69,7 +63,6 @@ class droneDB():
         for x in result:
             print(x)
         print('Displaying DONE')
-
 
     def delete_rows(self, tablename, condition):
         query_str = f'DELETE FROM {tablename} WHERE {condition}'
