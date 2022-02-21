@@ -30,5 +30,13 @@ app.add_url_rule('/display_entries/<tablename>', 'display_entries', dronedb.disp
 #DELETION
 app.add_url_rule('/delete_rows/<tablename>/<condition>', 'delete_rows', dronedb.delete_rows)
 
+dronedb = droneDB('localhost', 'root', 'Unbxd@123', 'drone_info')
+app.add_url_rule('/get_db_details', 'get_db_details', dronedb.get_db_details)
+app.add_url_rule('/desc_table/<tablename>', 'desc_table', dronedb.desc_table)
+#app.add_url_rule('/insert_records/<tablename>/<val_tuple>', 'insert_records', dronedb.insert_records) #change type to int for tuple elements
+app.add_url_rule('/display_entries/<tablename>', 'display_entries', dronedb.display_entries)
+#app.add_url_rule('/delete_rows/<tablename>/<condition>', 'delete_rows', dronedb.delete_rows)
+>>>>>>> fb79287b7d3e09f18510582f9da428275cd9367c
+
 if(__name__ == '__main__'):
     app.run(debug=True)
