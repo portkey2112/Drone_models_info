@@ -8,7 +8,7 @@ app = Flask(__name__)
 def home():
     return 'Welcome to the drone database. Fly as high as you want!'
 
-dronedb = droneDB('localhost', 'root', 'Unbxd@123', 'drone_info')
+dronedb = droneDB('host.docker.internal', 'root', 'Unbxd@123', 'drone_info')
 
 '''
 
@@ -190,7 +190,7 @@ def f_delete_rows():
 
 
 if(__name__ == '__main__'):
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
 
 #URL mapping without JSON
 #app.add_url_rule('/get_db_details', 'get_db_details', dronedb.get_db_details, methods=['GET'])
