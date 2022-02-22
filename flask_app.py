@@ -18,6 +18,7 @@ pwd = os.environ.get("MYSQL_PASSWORD")
 db_name = 'drone_info'
 dronedb = droneDB(host, user, pwd, db_name)
 #dronedb = droneDB('localhost', 'root', 'Unbxd@123', 'drone_info')
+#dronedb = droneDB('host.docker.internal', 'root', 'Unbxd@123', 'drone_info')
 
 '''
 
