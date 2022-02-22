@@ -29,7 +29,6 @@ Tables:
 # security_features
 => Like encryption, alerts, back home and other security features
 
-
 Main table: drone_models
 Fields:
 1. ID
