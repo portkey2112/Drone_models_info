@@ -47,6 +47,6 @@ Fields:
 13. wingspan
 
 
-
-
-
+# Testing
+Tested all APIs using curl commands (Basic functionality testing. Special cases must be handled)
+Repeated few tests on Postman - https://go.postman.co/workspace/Drone-models-details-applicatio~b949e783-b6ef-43ef-b118-d8451e02eae1/collection/19699001-fbebfd2f-5109-4d96-bd04-51b8ebbdf25d 
