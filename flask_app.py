@@ -1,14 +1,22 @@
 from flask import Flask
 from drone_db_ops import droneDB
 from flask import request
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 
 @app.route('/')
 def home():
     return 'Welcome to the drone database. Fly as high as you want!'
 
-dronedb = droneDB('localhost', 'root', 'Unbxd@123', 'drone_info')
+host = 'localhost'
+user = os.environ.get("MYSQL_USER")
+pwd = os.environ.get("MYSQL_PASSWORD")
+db_name = 'drone_info'
+dronedb = droneDB(host, user, pwd, db_name)
+#dronedb = droneDB('localhost', 'root', 'Unbxd@123', 'drone_info')
 
 '''
 
