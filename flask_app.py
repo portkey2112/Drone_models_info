@@ -12,10 +12,10 @@ def home():
     return 'Welcome to the drone database. Fly as high as you want!'
 
 #dronedb = droneDB('host.docker.internal', 'root', 'Unbxd@123', 'drone_info')
-host = os.environ.get('DB_URL') 
+host = os.environ.get('DB_HOST')
 user = os.environ.get("MYSQL_USER")
 pwd = os.environ.get("MYSQL_PASSWORD")
-db_name = 'drone_info'
+db_name = os.environ.get("DB_NAME")
 dronedb = droneDB(host, user, pwd, db_name)
 #dronedb = droneDB('localhost', 'root', 'Unbxd@123', 'drone_info')
 #dronedb = droneDB('host.docker.internal', 'root', 'Unbxd@123', 'drone_info')
