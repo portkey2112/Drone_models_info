@@ -1,0 +1,142 @@
+# Default values for drone-details-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: docker.io/library/drone-app
+  pullPolicy: Never
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v3"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 5000
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+mysql:
+  fullnameOverride: "drone-mysql"
+  auth:
+    ## MySQL root password
+    ## ref: https://github.com/bitnami/bitnami-docker-mysql#setting-the-root-password-on-first-run
+    ##
+    rootPassword: "Unbxd@123"
+    ## MySQL custom user and database
+    ## ref: https://github.com/bitnami/bitnami-docker-mysql/blob/master/README.md#creating-a-database-on-first-run
+    ## ref: https://github.com/bitnami/bitnami-docker-mysql/blob/master/README.md#creating-a-database-user-on-first-run
+    ##
+    database: "drones_info"
+    username: "root"
+    password: "Unbxd@123"
+  initdbScripts:
+    init_db.sql: |
+      USE `drones_info`;
+
+      --
+      -- Table structure for table `automation_features`
+      --
+
+      DROP TABLE IF EXISTS `automation_features`;
+      /*!40101 SET @saved_cs_client     = @@character_set_client */;
+      /*!50503 SET character_set_client = utf8mb4 */;
+      CREATE TABLE `automation_features` (
+        `auto_feat_ID` int NOT NULL,
+        `name` varchar(255) NOT NULL,
+        `description` text NOT NULL,
+        PRIMARY KEY (`auto_feat_ID`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+      /*!40101 SET character_set_client = @saved_cs_client */;
+
+      --
+      -- Dumping data for table `automation_features`
+      --
+
+      LOCK TABLES `automation_features` WRITE;
+      /*!40000 ALTER TABLE `automation_features` DISABLE KEYS */;
+      INSERT INTO `automation_features` VALUES (1,'GNSS navigation','Thanks to several positioning system available (GPS, Glonass, Galileo, Beidu, etc.), our UAVs perform GNSS-assisted missions.'),(2,'Waypoint flying','The most common operation performed with UAVs depends on 3D coordinates (longitude, latitude and altitude).'),(3,'Auto take-off & landing','Our systems can perform fully automated flights including take-off and landing.'),(9,'Altitude hold','This flight mode is designed for complex missions requiring altitude hold assistance.'),(10,'Boat mode [advanced]','This is an advanced feature that allows the pilot to initialize the solid state gyroscopes for safe flight even when the drone is resting on a moving boat or platform.'),(200,'dfdsfh','djhfdkshf'),(20000,'sjfdhfdskj','dshfkdshfdshkjfahdfhdk');
+      /*!40000 ALTER TABLE `automation_features` ENABLE KEYS */;
+      UNLOCK TABLES;
+
+
+
+
+labels:
+  app.kubernetes.io/name: app
+  app.kubernetes.io/instance: drone_details_app
+  app.kubernetes.io/version: "1.16.0"
+
+matchLabels:
+  app.kubernetes.io/name: app
+  app.kubernetes.io/instance: drone_details_app
+
+containers:
+  name: drone-details
+  image: drone-app
+  tag: "v2"
