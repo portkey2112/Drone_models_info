@@ -1,0 +1,6 @@
+__pycache__
+.czrc
+k8s
+.git
+.env
+drone-details-app/Chart.lock

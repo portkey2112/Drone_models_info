@@ -95,6 +95,12 @@ mysql:
     database: "drones_info"
     username: "root"
     password: "Unbxd@123"
+  primary:
+    service:
+      port: 3306
+  secondary:
+    service:
+      port: 3306
 
   ## https://stackoverflow.com/questions/38504257/mysql-scripts-in-docker-entrypoint-initdb-are-not-executed - tried and no use
 

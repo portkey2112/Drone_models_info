@@ -1,0 +1,6 @@
+__pycache__
+.czrc
+k8s
+.git
+drone-details-app
+.env
