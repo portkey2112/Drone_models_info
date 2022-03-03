@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{ .Release.Name }}"
+      labels:
+        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    spec:
+      ##automountServiceAccountToken: false
+      ##serviceAccountName: drone-post-inst-job-srv-acc
+      restartPolicy: Never
+      volumes:
+      - name: init-script
+        configMap:
+          name: drone-mysql-cfg-map
+      containers:
+      - name: mysql-setup
+        image: docker.io/bitnami/mysql:8.0.28-debian-10-r23
+        command: ["ls /init-script"]
+        #command: ["mysql -uroot -pUnbxd@123 < /init-script/init-drones-db.sql"]
+        volumeMounts:
+        - name: init-script
+          mountPath: "/init-script"
+          readOnly: true
